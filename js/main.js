@@ -12,8 +12,10 @@ const foodSound = new Audio('music/food.mp3');
 const gameOverSound = new Audio('music/gameover.mp3');
 const moveSound  = new Audio('music/move.mp3');
 const musicSound = new Audio('music/music.mp3');
-let speed = 19;
+const board = document.getElementById("board");
+let speed = 10;
 let score = 0;
+let level = 1;
 let lastPaintTime = 0;
 let snakeArr = [
     {x: 13, y: 15}
@@ -52,29 +54,46 @@ function isCollide(snake) {
     return false;
 }
 
+
 function gameEngine(){
     // Part 1: Updating the snake array & food 
     if(isCollide(snakeArr)){
+       sum();
+        // createLottiePlayer();
+        // playCollisionAnimation();
+        // ---------------------------------------------------------------------------------
         gameOverSound.play();
         musicSound.pause();
         inputDir = {x: 0, y: 0};
         alert("Game Over!; Press any key to play again!");
+        // sum(2,3);
         snakeArr = [{x: 13, y: 15 }];
         musicSound.play();
         score = 0;
+        // ------------------------------------------------------------------------
+        createLottiePlayer();
+        playCollisionAnimation();
+      
+        // -----------------------------------------------------------------------------
     }
 // If you have eaten the food, increment the score and regenerate the food
 
       if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
-        foodSound.play();
         score += 1;
+        if (score % 10 === 0) {
+            level++;
+            speed +=10;
+             // decrease speed to increase difficulty
+        }
         if(score>hiscoreval){
                 hiscoreval = score;
                 localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
                 hiscoreBox.innerHTML = "HiScore: " + hiscoreval;
              
         }
+
         scoreBox.innerHTML = "Score:" + score;
+        levelBox.innerHTML = "Level:"+ level;
         snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
         let a = 2;
         let b = 16;
@@ -149,8 +168,9 @@ if (hiscore === null) {
 
 
 // ----------------------------------------------------------------------------------
-window.requestAnimationFrame(main);
+// window.requestAnimationFrame(main);
 window.addEventListener('keydown' ,e =>{
+
     // console.log("Hello");
     // Start the game:
    inputDir = {x: 0, y: 1}   
@@ -186,3 +206,119 @@ window.addEventListener('keydown' ,e =>{
    }
 
 });
+// -------------------------------------------------------------------------
+
+
+// ------------------------------------------------------------------------
+
+// --------------Button Click----------------------------------
+// let start = document.getElementsByTagName("button");
+const startButton = document.getElementById("button");
+console.log("Hello");
+startButton.addEventListener("click",()=>{
+    window.requestAnimationFrame(main);
+  
+
+});
+
+// Animation after game over:
+// Function to create and append the lottie-player element
+// 1)-------------------------------------------------------------------------------------------------------------------------
+function createLottiePlayer() {
+    const lottiePlayer = document.createElement('lottie-player');
+    lottiePlayer.src = "https://lottie.host/c99b00f0-8b8e-486f-8532-0fe46f8b76c9/NTCtxOXZv3.json";
+    // lottiePlayer.background = "#22292F";
+    lottiePlayer.speed = "1";
+    lottiePlayer.style.width = "300px";
+    lottiePlayer.style.height = "300px";
+    lottiePlayer.loop = true;
+    lottiePlayer.autoplay = false; // Set autoplay to false initially
+
+    // Event listener to play the animation when the user interacts with the document
+    // document.addEventListener("click", function() {
+    //     lottiePlayer.play();
+    // }, { once: true }); // Remove the event listener after it's triggered once
+
+    // Append lottiePlayer to the board element
+    board.appendChild(lottiePlayer);
+}
+
+// Wait for the DOM content to load
+document.addEventListener("DOMContentLoaded", function() {
+    // Call the function to create and append the lottie-player element
+    createLottiePlayer();
+    
+});
+//2 ---------------------------------------------------------------------------------
+// Function to play the animation when the snake collides
+
+function playCollisionAnimation() {
+    const lottiePlayer = document.querySelector('lottie-player');
+    if (lottiePlayer) {
+        lottiePlayer.autoplay = true; // Set autoplay to true to play the animation
+    }
+}
+
+// Wait for the DOM content to load
+document.addEventListener("DOMContentLoaded", function() {
+    // Call the function to create and append the lottie-player element
+    createLottiePlayer();
+    
+    // Call the function to play the animation after the snake collides
+    playCollisionAnimation();
+});
+
+
+function sum(){
+ console.log("prachi");
+}
+
+
+
+// Animation after completion of the level of the game:
+
+// function createLevelPlayer() {
+//     const levelPlayer = document.createElement('level-player');
+//     levelPlayer.src = "https://lottie.host/ba5cfeed-b5ac-42a0-ba26-3e5d7f608c6b/ypZ6Q8N1f9.json";
+//     // lottiePlayer.background = "#22292F";
+//     levelPlayer.background="##FFFFFF"
+//     levelPlayer.speed = "1";
+//     levelPlayer.style.width = "300px";
+//     levelPlayer.style.height = "300px";
+//     levelPlayer.loop = true;
+//     levelPlayer.autoplay = false; // Set autoplay to false initially
+
+//     // Event listener to play the animation when the user interacts with the document
+//     // document.addEventListener("click", function() {
+//     //     lottiePlayer.play();
+//     // }, { once: true }); // Remove the event listener after it's triggered once
+
+//     // Append lottiePlayer to the board element
+//     board.appendChild(levelPlayer);
+// }
+
+// // Wait for the DOM content to load
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Call the function to create and append the lottie-player element
+//     createLevelPlayer();
+    
+// });
+//2 ---------------------------------------------------------------------------------
+// Function to play the animation when the snake collides
+
+// function playCollisionAnimation() {
+//     const levelPlayer = document.querySelector('level-player');
+//     if (levelPlayer) {
+//         levelPlayer.autoplay = true; // Set autoplay to true to play the animation
+//     }
+// }
+
+// // Wait for the DOM content to load
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Call the function to create and append the level-player element
+//     createLevelPlayer();
+    
+//     // Call the function to play the animation after the snake collides
+//     playCollisionAnimation();
+// });
+

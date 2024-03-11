@@ -1,0 +1,26 @@
+function createLottiePlayer() {
+    const lottiePlayer = document.createElement('lottie-player');
+    lottiePlayer.src = "https://lottie.host/c99b00f0-8b8e-486f-8532-0fe46f8b76c9/NTCtxOXZv3.json";
+    lottiePlayer.background = "#22292F";
+    lottiePlayer.speed = "1";
+    lottiePlayer.style.width = "300px";
+    lottiePlayer.style.height = "300px";
+    lottiePlayer.loop = true;
+    lottiePlayer.autoplay = false; // Set autoplay to false initially
+
+    // Event listener to play the animation when the user interacts with the document
+    document.addEventListener("click", function() {
+        lottiePlayer.play();
+    }, { once: true }); // Remove the event listener after it's triggered once
+
+    // Append lottiePlayer to the board element
+    board.appendChild(lottiePlayer);
+}
+
+// Wait for the DOM content to load
+document.addEventListener("DOMContentLoaded", function() {
+    // Call the function to create and append the lottie-player element
+    createLottiePlayer();
+    console.log("Jenish");
+});
+

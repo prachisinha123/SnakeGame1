@@ -32,19 +32,23 @@
     font-weight: bold;
     font-family: 'New Tegomin', serif;
 }
-
+#levelBox{
+  
+}
 #board{
     background: linear-gradient(rgb(170, 236, 170), rgb(236, 236, 167));
     width: 90vmin;
     height: 92vmin;
     
-    border: 2px solid black;
+    border: 2px solid rgb(125, 232, 25);
+   
     display: grid;
     grid-template-rows: repeat(18, 1fr);
     grid-template-columns: repeat(18, 1fr);
     margin-left:18%;
-}
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 
+}
 .head{
      background: linear-gradient(rgb(240, 124, 124), rgb(228, 228, 129));
     border: 2px solid rgb(34, 4, 34); 
@@ -68,7 +72,7 @@
 }
 
 /* --------Buttton */
-button {
+#button {
     /*  margin-top: 10%; 
     
   
@@ -101,12 +105,12 @@ button {
   transition: all 0.5s ease;
   }
   
-  button:active {
+  #button:active {
     transform: scale(0.9);
     transition: all 100ms ease;
   }
   
-  button svg {
+  #button svg {
     transition: all 0.5s ease;
     z-index: 2;
   }
@@ -116,7 +120,7 @@ button {
     transition-delay: 300ms;
   }
   
-  button:hover svg {
+  #button:hover svg {
     transform: scale(3) translate(50%);
   }
   
@@ -128,13 +132,151 @@ button {
     z-index: 2;
   }
   
-  button:hover .now {
+  #button:hover .now {
     transform: translateX(10px);
     transition-delay: 300ms;
   }
   
-  button:hover .play {
+  #button:hover .play {
     transform: translateX(200%);
     transition-delay: 300ms;
   }
+/* Arrow button design */
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 50px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+/* -------------------------------------------------- */
+.arrow {
+  border: solid rgb(241, 237, 237);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin:5px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+#btn1{
+    margin:10px;
   
+    background-color: rgb(24, 16, 16);
+   
+ }
+ #btn2{
+    margin:10px;
+    margin-top:8%;
+    background-color: rgb(24, 16, 16);
+    margin-bottom:30%;  
+ }
+ #btn3{
+    
+    margin:10px;
+    margin-top:0%;
+    background-color: rgb(24, 16, 16); 
+ }
+ #btn4{
+    margin:10px;
+    background-color: rgb(24, 16, 16);  
+ }
+ 
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    margin-top:20%;
+    margin-left:0%;
+
+  } 
+
+  /* ---------------------Animation --------------------------- */
+ 
+ lottie-player{
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999; 
+  
+ } 
+
+/* lottie-player::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
+  display: none; 
+}
+
+lottie-player.playing::before {
+  display: block; 
+}
+
+lottie-player::after {
+  content: 'Game Over';
+  position: absolute; 
+  
+  top : 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  z-index: 2;
+  display: none; 
+}
+
+lottie-player.playing::after {
+  display: block; 
+}  */
+
+
+
+
