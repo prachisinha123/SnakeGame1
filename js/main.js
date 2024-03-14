@@ -13,6 +13,7 @@ const gameOverSound = new Audio('music/gameover.mp3');
 const moveSound  = new Audio('music/move.mp3');
 const musicSound = new Audio('music/music.mp3');
 const board = document.getElementById("board");
+let isGameOver = false;
 let speed = 10;
 let score = 0;
 let level = 1;
@@ -57,25 +58,29 @@ function isCollide(snake) {
 
 function gameEngine(){
     // Part 1: Updating the snake array & food 
-    if(isCollide(snakeArr)){
-       sum();
-        // createLottiePlayer();
-        // playCollisionAnimation();
+    if(isCollide(snakeArr) && !isGameOver){
+        isGameOver = true;
+        sum();
+        createLottiePlayer();
+        playCollisionAnimation();
         // ---------------------------------------------------------------------------------
         gameOverSound.play();
         musicSound.pause();
-        inputDir = {x: 0, y: 0};
-        alert("Game Over!; Press any key to play again!");
         // sum(2,3);
-        snakeArr = [{x: 13, y: 15 }];
-        musicSound.play();
-        score = 0;
+        setTimeout(() => {
+            inputDir = {x: 0, y: 0};
+            alert("Game Over!; Press any key to play again!");
+            isGameOver = false;
+            snakeArr = [{x: 13, y: 15 }];
+            musicSound.play();
+            score = 0;
+        }, 2000);
         // ------------------------------------------------------------------------
-        createLottiePlayer();
-        playCollisionAnimation();
+        // createLottiePlayer();
+        // playCollisionAnimation();
       
         // -----------------------------------------------------------------------------
-    }
+    } else if(!isCollide(snakeArr)){
 // If you have eaten the food, increment the score and regenerate the food
 
       if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
@@ -137,7 +142,7 @@ function gameEngine(){
         board.appendChild(foodElement); 
         
     }
-
+}
 // Main logic starts here:
 // let hiscore = localStorage.getItem("hiscore");
 // if(hiscore === null){
