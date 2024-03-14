@@ -21,6 +21,5 @@ function createLottiePlayer() {
 document.addEventListener("DOMContentLoaded", function() {
     // Call the function to create and append the lottie-player element
     createLottiePlayer();
-    console.log("Jenish");
 });
 
