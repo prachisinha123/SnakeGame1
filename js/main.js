@@ -267,7 +267,7 @@ function playCollisionAnimation() {
 // Wait for the DOM content to load
 document.addEventListener("DOMContentLoaded", function() {
     // Call the function to create and append the lottie-player element
-    createLottiePlayer();
+    // createLottiePlayer();
     
     // Call the function to play the animation after the snake collides
     playCollisionAnimation();
